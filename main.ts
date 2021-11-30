@@ -7,6 +7,15 @@ input.onGesture(Gesture.LogoDown, function () {
         # # # # #
         `)
 })
+function ongelukkig () {
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
+        . # # # .
+        # . . . #
+        `)
+}
 // eten geven
 input.onButtonPressed(Button.A, function () {
     basic.showLeds(`
@@ -58,6 +67,7 @@ input.onButtonPressed(Button.A, function () {
         # . . . #
         . # # # .
         `)
+    maag += 30
 })
 input.onGesture(Gesture.Shake, function () {
     basic.showLeds(`
@@ -76,6 +86,15 @@ input.onGesture(Gesture.Shake, function () {
         . . . . .
         `)
 })
+function nietblij () {
+    basic.showLeds(`
+        . . . . .
+        . . . . .
+        . . . . .
+        # # # # #
+        . . . . .
+        `)
+}
 // aaien
 input.onButtonPressed(Button.B, function () {
     basic.showLeds(`
@@ -100,6 +119,14 @@ input.onButtonPressed(Button.B, function () {
         . # # # .
         `)
 })
+function blij () {
+	
+}
+function dood () {
+    basic.showIcon(IconNames.Skull)
+    basic.pause(5000)
+}
+let maag = 100
 basic.showLeds(`
     . . . . .
     . . . . .
@@ -107,21 +134,16 @@ basic.showLeds(`
     # . . . #
     . # # # .
     `)
+loops.everyInterval(500, function () {
+    maag += -1
+})
 basic.forever(function () {
-    basic.pause(5000)
-    basic.pause(5000)
-    basic.showLeds(`
-        . . . . .
-        . . . . .
-        . . . . .
-        # # # # #
-        . . . . .
-        `)
-    basic.showLeds(`
-        . . . . .
-        . . . . .
-        . . . . .
-        . # # # .
-        # . . . #
-        `)
+    basic.pause(2000)
+    if (maag >= 50) {
+        blij()
+    } else if (maag < 50 && maag > 10) {
+        nietblij()
+    } else {
+        ongelukkig()
+    }
 })
